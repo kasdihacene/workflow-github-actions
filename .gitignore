@@ -1,0 +1,41 @@
+# Ignore target resources
+**/target
+
+# Ignore logs/
+**/logs
+
+### Eclipse ###
+*.zip
+.metadata
+bin/
+tmp/
+*.tmp
+local.properties
+.settings/
+.idea/
+.eclipse
+
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
