@@ -30,13 +30,19 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml -Dmaven.test.skip=true
 
-    - uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-        file: ./coverage.xml # optional
-        flags: unittests # optional
-        name: codecov-umbrella # optional
-        fail_ci_if_error: true # optional (default = false)
+    - name: generate report codecov
+      run: mvn cobertura:cobertura
+
+    - name: generate report codecov
+      run: mvn cobertura:cobertura
+
+    - name: Upload coverage
+      if: success()
+      run: |
+        curl -s https://codecov.io/bash | bash
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      shell: bash
 
     - name: Upload Maven build artifact
       uses: actions/upload-artifact@v1
