@@ -76,4 +76,15 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
+      - name: Run a script on remote server (start the application)
+        if: always()
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            cd hacene/demo/actions/ && java -jar workflow-github-actions.jar &
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.SSH_USER }}
+          pass: ${{ secrets.SSH_PASSWORD }}
+          args: "-tt"
+          # The & in the command runs the process on background
 
