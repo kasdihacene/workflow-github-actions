@@ -72,7 +72,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@release
         with:
           local: target/workflow-github-actions-1.0-SNAPSHOT.jar
-          remote: hacene/demo/actions # My remote directory
+          remote: hacene/demo/actions/workflow-github-actions.jar # My remote directory
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
