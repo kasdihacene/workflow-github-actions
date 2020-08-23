@@ -9,3 +9,8 @@ The idea is to automate the development workflow and to build a CI/CD pipeline u
 
 
 See more about the article [HERE](https://medium.com/@hacene.upmc/automate-your-development-workflow-with-github-actions-220a737abb3c)
+
+### Add azure application insights to trace logs and metrics
+
+Azure Application Insights : 
+        monitors your running web app. It tells you about failures and performance issues, and helps you analyze how customers use your app.

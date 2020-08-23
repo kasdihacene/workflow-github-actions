@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="aiAppender"
+              class="com.microsoft.applicationinsights.logback.ApplicationInsightsAppender">
+    </appender>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>[POC-SERVER] %d{yyyy-MM-dd_HH:mm:ss} | %-5level | %-4relative %logger{35} | %M | %X{service} %X{trt} %X{correlid} %X{emetteur} %X{destinataire} %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="aiAppender" />
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>
