@@ -55,6 +55,13 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Adding for Application insights -->
         <dependency>
             <groupId>com.microsoft.azure</groupId>

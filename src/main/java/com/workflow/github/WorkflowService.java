@@ -2,6 +2,7 @@ package com.workflow.github;
 
 import com.microsoft.applicationinsights.TelemetryClient;
 import com.microsoft.applicationinsights.telemetry.Duration;
+import com.workflow.github.config.BusinessConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,19 @@ public class WorkflowService {
     @Autowired
     TelemetryClient telemetryClient;
 
+    @Autowired
+    private BusinessConfig businessConfig;
+
     public String message() {
+
+        LOGGER.info(businessConfig.getDescription());
+        LOGGER.info(businessConfig.getName());
+        LOGGER.info("{}",businessConfig.getRule().getNumber());
 
         LOGGER.warn("This is the info log for azure application insights");
         LOGGER.warn("This is the warn log for azure application insights");
         LOGGER.warn("This is the error log for azure application insights");
+
 
         //track a custom event
         this.telemetryClient.trackEvent("Sending a custom event...");

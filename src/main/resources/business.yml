@@ -1,0 +1,5 @@
+business:
+  name: name
+  description: good desc
+  rule:
+    number: 200
