@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationInsightsAgent>
+    <Instrumentation>
+        <BuiltIn enabled="true">
+
+            <!-- capture logging via Log4j 1.2, Log4j2, and Logback, default is true -->
+            <Logging enabled="true" />
+
+            <!-- capture outgoing HTTP calls performed through Apache HttpClient, OkHttp,
+                 and java.net.HttpURLConnection, default is true -->
+            <HTTP enabled="true" W3C="true" enableW3CBackCompat="true"/>
+
+            <!-- capture JDBC queries, default is true -->
+            <JDBC enabled="true" />
+
+            <!-- capture Redis calls, default is true -->
+            <Jedis enabled="true" />
+
+            <!-- capture query plans for JDBC queries that exceed this value (MySQL, PostgreSQL),
+                 default is 10000 milliseconds -->
+            <MaxStatementQueryLimitInMS>1000</MaxStatementQueryLimitInMS>
+
+        </BuiltIn>
+    </Instrumentation>
+</ApplicationInsightsAgent>

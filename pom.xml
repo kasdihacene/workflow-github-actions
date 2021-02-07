@@ -11,9 +11,11 @@
     <packaging>jar</packaging>
 
     <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>8</java.version>
+        <java.version>11</java.version>
 
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <junit5.version>5.1.1</junit5.version>
@@ -61,17 +63,30 @@
             <version>1.18.12</version>
             <scope>provided</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
+        </dependency>
 
         <!-- Adding for Application insights -->
         <dependency>
             <groupId>com.microsoft.azure</groupId>
             <artifactId>applicationinsights-spring-boot-starter</artifactId>
-            <version>2.6.1</version>
+            <version>2.6.2</version>
         </dependency>
         <dependency>
             <groupId>com.microsoft.azure</groupId>
             <artifactId>applicationinsights-logging-logback</artifactId>
             <version>2.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>applicationinsights-web-auto</artifactId>
+            <!-- or applicationinsights-web for manual web filter registration -->
+            <!-- or applicationinsights-core for bare API -->
+            <version>2.6.2</version>
         </dependency>
 
 

@@ -13,7 +13,6 @@
     </appender>
 
     <root level="INFO">
-        <appender-ref ref="aiAppender" />
         <appender-ref ref="CONSOLE" />
     </root>
 

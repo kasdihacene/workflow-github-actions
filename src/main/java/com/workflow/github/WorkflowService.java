@@ -1,47 +1,49 @@
 package com.workflow.github;
 
-import com.microsoft.applicationinsights.TelemetryClient;
-import com.microsoft.applicationinsights.telemetry.Duration;
 import com.workflow.github.config.BusinessConfig;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 @Component
+@Slf4j
 public class WorkflowService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(WorkflowService.class);
 
     @Autowired
-    TelemetryClient telemetryClient;
-
+    private CloseableHttpClient httpClient;
     @Autowired
     private BusinessConfig businessConfig;
 
-    public String message() {
+    public String message() throws IOException {
 
-        LOGGER.info(businessConfig.getDescription());
-        LOGGER.info(businessConfig.getName());
-        LOGGER.info("{}",businessConfig.getRule().getNumber());
+        log.info(businessConfig.getDescription());
+        log.info(businessConfig.getName());
+        log.info("{}", businessConfig.getRule().getNumber());
 
-        LOGGER.warn("This is the info log for azure application insights");
-        LOGGER.warn("This is the warn log for azure application insights");
-        LOGGER.warn("This is the error log for azure application insights");
+        callExternalAPI();
 
+        log.warn("This is the info log for azure application insights");
 
-        //track a custom event
-        this.telemetryClient.trackEvent("Sending a custom event...");
-
-        //trace a custom trace
-        this.telemetryClient.trackTrace("Sending a custom trace....");
-
-        //track a custom metric
-        this.telemetryClient.trackMetric("custom metric", 1.0);
-
-        //track a custom dependency
-        this.telemetryClient
-                .trackDependency("SQL", "Insert", new Duration(0, 0, 1, 1, 1), true);
 
         return "Hello";
+    }
+
+    private void callExternalAPI() throws IOException {
+        HttpGet httpget = new HttpGet("https://my-json-server.typicode.com/kasdihacene/JsonServer/informations");
+        HttpResponse httpresponse = httpClient.execute(httpget);
+
+        Scanner sc = new Scanner(httpresponse.getEntity().getContent());
+
+        //Printing the status line
+        System.out.println(httpresponse.getStatusLine());
+        while(sc.hasNext()) {
+            System.out.println(sc.nextLine());
+        }
     }
 }
