@@ -22,6 +22,9 @@
         <junit.jupiter.version>5.1.0</junit.jupiter.version>
         <junit.vintage.version>5.1.0</junit.vintage.version>
         <junit.platform.version>1.1.0</junit.platform.version>
+
+        <docker.image.prefix>haceneAcr1878.azurecr.io</docker.image.prefix>
+        <jib-maven-plugin.version>2.2.0</jib-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -48,6 +51,11 @@
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>2.2.6.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -79,7 +87,7 @@
         <dependency>
             <groupId>com.microsoft.azure</groupId>
             <artifactId>applicationinsights-logging-logback</artifactId>
-            <version>2.6.1</version>
+            <version>2.6.2</version>
         </dependency>
         <dependency>
             <groupId>com.microsoft.azure</groupId>
@@ -94,6 +102,27 @@
 
     <build>
         <plugins>
+            <plugin>
+                <artifactId>jib-maven-plugin</artifactId>
+                <groupId>com.google.cloud.tools</groupId>
+                <version>${jib-maven-plugin.version}</version>
+                <configuration>
+                    <allowInsecureRegistries>true</allowInsecureRegistries>
+                    <from>
+                        <image>adoptopenjdk:11-jdk-openj9-bionic</image>
+                    </from>
+                    <to>
+                        <image>${docker.image.prefix}/app-insights-spring-boot</image>
+                    </to>
+                    <container>
+                        <jvmFlags>
+                            <jvmFlag>-javaagent:agent/applicationinsights-agent-2.6.2.jar</jvmFlag>
+                            <jvmFlag>-DAPPINSIGHTS_INSTRUMENTATIONKEY:de29f98d-fda4-43c5-bf7a-04a2c4ac60d1</jvmFlag>
+                        </jvmFlags>
+                    </container>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
